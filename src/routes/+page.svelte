@@ -77,9 +77,13 @@
     if (lang !== 'ru') {
       return strings;
     }
-    return Object.fromEntries(
-      Object.entries(strings).map(([key, value]) => [key, fixPrepositions(value)])
-    );
+    const localized = {};
+    for (const key in strings) {
+      if (Object.prototype.hasOwnProperty.call(strings, key)) {
+        localized[key] = fixPrepositions(strings[key]);
+      }
+    }
+    return localized;
   };
 
   const presetOptions = [
@@ -189,7 +193,24 @@
 <main class="page">
   <header class="hero">
     <div class="hero-copy">
-      <p class="eyebrow">{t.eyebrow}</p>
+      <div class="brand">
+        <span class="brand-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+            <rect x="18" y="22" width="28" height="34" rx="8" fill="#b77c5f" />
+            <rect x="22" y="26" width="20" height="26" rx="6" fill="#d9ad96" />
+            <rect x="30.5" y="18" width="3" height="6" rx="1.5" fill="#8b8367" />
+            <path
+              d="M32 6c6 6 6 14 0 18-6-4-6-12 0-18z"
+              fill="#f2d5c1"
+            />
+            <path
+              d="M32 10c3 4 3 8 0 11-3-3-3-7 0-11z"
+              fill="#fff8f2"
+            />
+          </svg>
+        </span>
+        <p class="eyebrow">{t.eyebrow}</p>
+      </div>
       <h1>{t.heroTitle}</h1>
       <p class="lead">{t.heroLead}</p>
     </div>

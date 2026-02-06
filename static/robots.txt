@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://candle-calculate.netlify.app/sitemap.xml
+
+Host: https://candle-calculate.netlify.app
